@@ -1,0 +1,70 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: 'view'}}" />
+
+  <view class="page-body">
+    <view class="page-section">
+      <view class="page-section-title">
+        <text>flex-direction: row\n横向布局</text>
+      </view>
+      <view class="page-section-spacing">
+        <view class="flex-wrp" style="flex-direction:row;">
+          <view class="flex-item demo-text-1"></view>
+          <view class="flex-item demo-text-2"></view>
+          <view class="flex-item demo-text-3"></view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section">
+      <view class="page-section-title">
+        <text>flex-direction: column\n纵向布局</text>
+      </view>
+      <view class="flex-wrp" style="flex-direction:column;">
+        <view class="flex-item flex-item-V demo-text-1"></view>
+        <view class="flex-item flex-item-V demo-text-2"></view>
+        <view class="flex-item flex-item-V demo-text-3"></view>
+      </view>
+    </view>
+    <view class="page-section">
+      <view class="page-section-title">
+        <text>hover-class: \n指定按下去的样式类</text>
+      </view>
+      <view class="flex-wrp">
+        <view class='father' hover-class="{{hover?'father-click':null}}" hover-start-time="{{startTime}}" hover-stay-time="{{stayTime}}">
+          <view class="flex-item flex-item-V demo-text-1" hover-class="{{hover?'demo-text-2':null}}" hover-stop-propagation="{{propagation}}" hover-start-time="{{startTime}}" hover-stay-time="{{stayTime}}"></view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section" style="margin-top: 40rpx;margin-bottom: 0;">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_switch">
+          <view class="weui-cell__bd">按下去样式</view>
+          <view class="weui-cell__ft">
+            <switch checked="{{hover}}" bindchange="changeHover" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_switch">
+          <view class="weui-cell__bd">阻止本节点的祖先节点出现点击态</view>
+          <view class="weui-cell__ft">
+            <switch checked="{{propagation}}" bindchange="changePropagation" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section page-section-spacing">
+      <view class="page-section-title">
+        <text>按住后多久出现点击态(ms)</text>
+        <text class="info">{{startTime}}</text>
+      </view>
+      <slider bindchange="startTimeChange" value="{{startTime}}" min="50" max="5000" />
+      <view class="page-section-title">
+        <text>手指松开后点击态保留时间(ms)</text>
+        <text class="info">{{stayTime}}</text>
+      </view>
+      <slider bindchange="stayTimeChange" value="{{stayTime}}" min="50" max="5000" />
+    </view>
+  </view>
+  <template is="foot" />
+</view>
